@@ -34,12 +34,14 @@
 <%
 const date = new Date(data.birthday);
 const year = date.getFullYear();
-const month = date.getMonth() < 10 ? "0" + (date.getMonth() + 1 ) : date.getMonth();
+<!-- getMonth method starts from 0, so we add 1-->
+const mFormat = date.getMonth() + 1;
+const month = mFormat < 10 ? `0${mFormat}` : mFormat;
 const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
 %>
         <div class="form__group">
             <label for="birthday">Birthday</label>
-            <!-- The Date Input accepts this format (yyyy-mm-dd) -->
+            <!-- The Date Input accepts this format (yyyy-mm-dd) but displays this format (dd/mm/yyyy) -->
             <input type="date" name="birthday" id="birthday" value="<%=year%>-<%=month%>-<%=day%>">
         </div>
         <input type="submit" value="Update" class="button">
